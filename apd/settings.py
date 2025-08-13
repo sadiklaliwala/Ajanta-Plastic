@@ -28,7 +28,7 @@ env_path = BASE_DIR / '.env'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-=bx$g=8r%$-(16a8s7yb5zkqhz=!*jrarw6ey7j79&of*smxfz'
+SECRET_KEY = 'django-insecure-=bx$g=8r%$-(16a8s7yb5zkqhz=!*jrarw6ey7j79&of*smxfz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
