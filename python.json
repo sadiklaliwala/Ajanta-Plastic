@@ -1,0 +1,8 @@
+{
+  "deploy": {
+    "managetasks": [
+      "makemigrations --no-input",
+      "migrate --no-input"
+    ]
+  }
+}
