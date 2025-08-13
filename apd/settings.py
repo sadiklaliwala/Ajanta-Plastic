@@ -30,9 +30,9 @@ env_path = BASE_DIR / '.env'
 
 # SECURITY
 # Read SECRET_KEY from environment or fallback for local dev
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-dev-key')
+SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-dev-key')
 
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = os.environ.get('DEBUG','True') == 'True'
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
 
