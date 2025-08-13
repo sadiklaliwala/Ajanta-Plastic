@@ -28,14 +28,13 @@ env_path = BASE_DIR / '.env'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 
-# SECRET_KEY: read from env, fallback for dev
+# SECURITY
+# Read SECRET_KEY from environment or fallback for local dev
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-dev-key')
 
-# DEBUG
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
 
 # Application definition
 
@@ -127,6 +126,7 @@ STATIC_URL = 'static/'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [ BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -134,5 +134,5 @@ STATICFILES_DIRS = [ BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # meadia files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media')
+MEDIA_URL = '/media/'
