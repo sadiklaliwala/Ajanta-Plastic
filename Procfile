@@ -1,1 +1,2 @@
-web: gunicorn apd.wsgi
+web: python -m gunicorn apd.wsgi
+
