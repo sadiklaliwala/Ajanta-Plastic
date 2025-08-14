@@ -13,6 +13,8 @@ import dj_database_url
 from pathlib import Path
 import os
 from decouple import config, RepositoryEnv
+import fontawesomefree
+
 
 
 
@@ -52,6 +54,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Add WhiteNoise
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # must be just after SecurityMiddleware 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -94,6 +98,9 @@ DATABASES = {
         'PORT': os.environ.get('MYSQL_ADDON_PORT',4306)
     }
 }
+
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -140,11 +147,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [ BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [ 
+    BASE_DIR / "static",
+    # fontawesomefree.finders.FONTAWESOME_PATH,  # auto-includes webfonts
+]
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
