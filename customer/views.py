@@ -25,11 +25,7 @@ def product_detail(request,pk):
  user=Customer.objects.filter(customer_id=cid).first()
  product=Product.objects.get(product_id=pk)
  product=Product.objects.get(product_id=pk)
- if offer and offer.p_discount:
-    su=product.product_price*product.offer.p_discount/100
-    # su = product.product_price * offer.p_discount / 100
- else:
-    su = 0 
+ su = 0 
  d_price=product.product_price-su
  
  print(d_price)
@@ -44,10 +40,7 @@ def add_to_cart(request):
         return redirect('login')
  if request.GET.get('pro_id'):
     product=Product.objects.get(product_id=request.GET.get('pro_id'))
-    if offer and offer.p_discount:
-        su=product.product_price*product.offer.p_discount/100
-    else:
-        su = 0
+    su = 0
     d_price=product.product_price-su
     print(su)
     
@@ -114,10 +107,7 @@ def buy_now(request,pid):
   user=Customer.objects.filter(customer_id=cid).first();
   if user:
     p=Product.objects.get(product_id=pid)
-    if offer and offer.p_discount:
-        su=p.product_price*p.offer.p_discount/100
-    else:
-        su = 0
+    su = 0
     d_price=p.product_price-su
     context={'p':p ,'u':d_price,'user':user}
   return render(request, 'app/buynow.html',context)
@@ -245,10 +235,7 @@ def bcheckout(request,pid):
   cid=request.session.get('cid')
   user=Customer.objects.filter(customer_id=cid).first()
   p=Product.objects.get(product_id=pid)
-  if offer and offer.p_discount:
-    su=p.product_price*p.offer.p_discount/100
-  else:
-      su=0
+  su=0
   d_price=p.product_price-su
   context={'p':p,'u':d_price,'user':user}
   return render(request, 'app/bcheckout.html',context)
