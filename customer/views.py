@@ -2,6 +2,7 @@ from unicodedata import category
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from adminsite.models import *
+from django.contrib.auth import logout
 
 def home(request):
  cid=request.session.get('cid')
@@ -257,6 +258,13 @@ def bpayment_done(request,pid):
     s=Order1(customer=user,product=pid,order_quantity=1,payment="COD")
     s.save();
     return redirect("orders")
+
+def logout(request):
+    # request.session.clear()
+    logout(request)
+    request.session.flush()
+    request.session['cid'] = None
+    return redirect("login")
 
 
     

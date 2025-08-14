@@ -15,7 +15,7 @@ urlpatterns = [
     path('cat/<int:id>', views.readcat, name='readcat'),
     
     path('login/', views.login, name='login'),
-    # path('logout/', views.logout, name='logout'),
+    path('logout/', views.logout, name='logout'),
     path('registration/', views.customerregistration, name='customerregistration1'),
     path('checkout/', views.checkout, name='checkout'),
     path('bcheckout/<int:pid>', views.bcheckout, name='bcheckout'),
